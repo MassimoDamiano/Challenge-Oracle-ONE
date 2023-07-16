@@ -6,7 +6,6 @@ const parrafo = document.getElementById("parrafo")
 let mensajeFinal = document.getElementById("mensaje")
 
 
-
 btnEncriptar.addEventListener("click", function(event){
    encriptar();
 });
@@ -20,9 +19,7 @@ btnDesencriptar.addEventListener("click", function(event){
 function encriptar(){ 
 
     let texto = document.getElementById("texto").value;
-    if(texto.length == 0){
-      alert("Debes ingresar algun texto")
-    }
+    
     texto = texto.toLowerCase();
     texto = texto.split("");
     for(i = 0; i < texto.length; i++){
@@ -46,16 +43,29 @@ function encriptar(){
    
 
     ocultar()
-    
-    
-     
-    mensajeFinal.innerHTML = texto
- 
-    console.log(mensajeFinal.textContent)
+    if(texto.length == 0){
+      alert("Debes ingresar algun texto")
+      mostrar()
+    }
     
 
+
+    mensajeFinal.innerHTML = texto
+   
+    textoInicial();
+
+    
 
 }
+function textoInicial(){
+
+
+   if(texto.value =! ""){
+      
+      texto.value = "";
+      
+   }
+   } 
 
 function ocultar(){
    munieco.classList.add("ocultar")
@@ -63,21 +73,58 @@ function ocultar(){
     parrafo.classList.add("ocultar")
     
 }
+function mostrar(){
+   munieco.classList.remove("ocultar")
+   tituloMensaje.classList.remove("ocultar")
+   parrafo.classList.remove("ocultar")
+}
+function reemplazarPalabras(texto) {
+   // Reemplazar "enter" por "e"
+   texto = texto.replace(/enter/g, 'e');
+   
+   // Reemplazar "imes" por "i"
+  texto= texto.replace(/imes/g, 'i');
+   
+   // Reemplazar "ai" por "a"
+   texto = texto.replace(/ai/g, 'a');
+   
+   // Reemplazar "ober" por "o"
+   texto = texto.replace(/ober/g, 'o');
+   
+   // Reemplazar "ufat" por "u"
+   texto = texto.replace(/ufat/g, 'u');
+   
+}
 
 function desencriptar(){
    let texto = document.getElementById("texto").value;
-    texto = texto.toLowerCase();
-    if(texto.length == 0){
-      alert("Debes ingresar algun texto")
-    }
-    let textoCifrado = texto
-    .replace(/enter/gi, "e")
-    .replace(/imes/gi, "i")
-    .replace(/ai/gi, "a")
-    .replace(/ober/gi, "o")
-    .replace(/ufat/gi, "u");
+   texto = texto.toLowerCase();
+   function reemplazarPalabras(texto) {
+      if (typeof texto !== 'string') {
+         return 'Error: La frase debe ser una cadena de texto.';
+       }
+      
+      texto = texto.replace(/enter/g, 'e');
+      texto= texto.replace(/imes/g, 'i');
+      texto = texto.replace(/ai/g, 'a');
+      texto = texto.replace(/ober/g, 'o');
+      texto= texto.replace(/ufat/g, 'u');
+      
+      textoFinal= texto
+      
+   } 
+   reemplazarPalabras(texto)
    ocultar()
-    mensajeFinal.innerHTML = texto
-    console.log(texto)
+   
+   
+   if(texto.length == 0){
+      alert("Debes ingresar algun texto")
+      mostrar()
+    }
     
+
+    mensajeFinal.innerHTML = textoFinal
+    texto.Value = "";
+    console.log(texto + "1");
+    textoInicial()
 }
