@@ -245,7 +245,7 @@ header{
   
     .mensaje{
         border: none;
-        width: 10px;
+        max-width: 100%;
         outline: none;
 
     }
